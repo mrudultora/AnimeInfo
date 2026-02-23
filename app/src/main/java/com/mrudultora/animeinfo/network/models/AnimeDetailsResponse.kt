@@ -3,7 +3,7 @@ package com.mrudultora.animeinfo.network.models
 import com.google.gson.annotations.SerializedName
 
 data class AnimeDetailsResponse(
-    val data: AnimeDetail
+    val animeDetail: AnimeDetail,
 )
 
 data class AnimeDetail(
