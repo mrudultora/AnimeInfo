@@ -1,4 +1,4 @@
-package com.mrudultora.animeinfo.models
+package com.mrudultora.animeinfo.network.models
 
 import com.google.gson.annotations.SerializedName
 

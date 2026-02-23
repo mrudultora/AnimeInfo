@@ -1,8 +1,8 @@
 package com.mrudultora.animeinfo.network
 
-import com.mrudultora.animeinfo.models.AnimeCharactersResponse
-import com.mrudultora.animeinfo.models.AnimeDetailsResponse
-import com.mrudultora.animeinfo.models.TopAnimeResponse
+import com.mrudultora.animeinfo.network.models.AnimeCharactersResponse
+import com.mrudultora.animeinfo.network.models.AnimeDetailsResponse
+import com.mrudultora.animeinfo.network.models.TopAnimeResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 
