@@ -5,10 +5,13 @@ import com.mrudultora.animeinfo.network.models.AnimeDetailsResponse
 import com.mrudultora.animeinfo.network.models.TopAnimeResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface AnimeInfoApi {
     @GET("top/anime")
-    suspend fun getTopAnime(): TopAnimeResponse
+    suspend fun getTopAnime(
+        @Query("page") page: Int
+    ): TopAnimeResponse
 
     @GET("anime/{anime_id}")
     suspend fun getAnimeDetails(
