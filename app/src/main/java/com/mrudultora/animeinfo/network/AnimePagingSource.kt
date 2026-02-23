@@ -4,6 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.mrudultora.animeinfo.room.models.AnimeInfoDao
 import com.mrudultora.animeinfo.room.models.AnimeInfoEntity
+import kotlinx.coroutines.flow.first
 
 class AnimePagingSource(
     private val api: AnimeInfoApi,
@@ -23,7 +24,7 @@ class AnimePagingSource(
                     title = it.title,
                     episodes = it.episodes,
                     score = it.score,
-                    imageUrl = it.images.jpg.imageUrl
+                    imageUrl = it.images.jpg.imageUrl,
                 )
             }
 
@@ -37,7 +38,18 @@ class AnimePagingSource(
             )
 
         } catch (e: Exception) {
-            LoadResult.Error(e)
+            // If network fails → load from Room
+            val cachedAnimeList = dao.getAllAnime().first()
+
+            if (cachedAnimeList.isNotEmpty()) {
+                LoadResult.Page(
+                    data = cachedAnimeList,
+                    prevKey = null,
+                    nextKey = null
+                )
+            } else {
+                LoadResult.Error(e)
+            }
         }
     }
 
