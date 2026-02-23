@@ -4,7 +4,6 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.mrudultora.animeinfo.room.models.AnimeInfoDao
 import com.mrudultora.animeinfo.room.models.AnimeInfoEntity
-import kotlinx.coroutines.flow.first
 
 class AnimePagingSource(
     private val api: AnimeInfoApi,
@@ -13,10 +12,10 @@ class AnimePagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, AnimeInfoEntity> {
 
-        val page = params.key ?: 1
+        val currentPage = params.key ?: 1
 
         return try {
-            val response = api.getTopAnime(page)
+            val response = api.getTopAnime(currentPage)
 
             val entities = response.data.map {
                 AnimeInfoEntity(
@@ -25,6 +24,7 @@ class AnimePagingSource(
                     episodes = it.episodes,
                     score = it.score,
                     imageUrl = it.images.jpg.imageUrl,
+                    page = currentPage,
                 )
             }
 
@@ -34,18 +34,18 @@ class AnimePagingSource(
             LoadResult.Page(
                 data = entities,
                 prevKey = null,
-                nextKey = if (response.pagination.hasNextPage) page + 1 else null
+                nextKey = if (response.pagination.hasNextPage) currentPage + 1 else null
             )
 
         } catch (e: Exception) {
             // If network fails → load from Room
-            val cachedAnimeList = dao.getAllAnime().first()
+            val cachedPage = dao.getAnimeByPage(currentPage)
 
-            if (cachedAnimeList.isNotEmpty()) {
+            if (cachedPage.isNotEmpty()) {
                 LoadResult.Page(
-                    data = cachedAnimeList,
-                    prevKey = null,
-                    nextKey = null
+                    data = cachedPage,
+                    prevKey = if (currentPage == 1) null else currentPage - 1,
+                    nextKey = currentPage + 1
                 )
             } else {
                 LoadResult.Error(e)

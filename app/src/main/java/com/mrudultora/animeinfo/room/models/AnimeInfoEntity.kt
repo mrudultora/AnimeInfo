@@ -9,5 +9,6 @@ data class AnimeInfoEntity(
     val title: String,
     val episodes: Int?,
     val score: Double?,
-    val imageUrl: String
+    val imageUrl: String,
+    val page: Int,
 )
