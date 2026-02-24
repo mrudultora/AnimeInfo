@@ -2,7 +2,7 @@ package com.mrudultora.animeinfo.usecases
 
 import androidx.paging.PagingData
 import com.mrudultora.animeinfo.network.AnimeInfoRepository
-import com.mrudultora.animeinfo.room.models.AnimeInfoEntity
+import com.mrudultora.animeinfo.room.AnimeInfoEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

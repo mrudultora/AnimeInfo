@@ -2,8 +2,8 @@ package com.mrudultora.animeinfo.network
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.mrudultora.animeinfo.room.models.AnimeInfoDao
-import com.mrudultora.animeinfo.room.models.AnimeInfoEntity
+import com.mrudultora.animeinfo.room.AnimeInfoDao
+import com.mrudultora.animeinfo.room.AnimeInfoEntity
 
 class AnimePagingSource(
     private val api: AnimeInfoApi,

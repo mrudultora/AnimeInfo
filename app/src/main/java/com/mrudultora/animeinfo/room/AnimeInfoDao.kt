@@ -1,4 +1,4 @@
-package com.mrudultora.animeinfo.room.models
+package com.mrudultora.animeinfo.room
 
 import androidx.room.Dao
 import androidx.room.Insert
