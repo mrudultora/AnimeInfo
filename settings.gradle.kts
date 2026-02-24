@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Seekho-Assignment"
+rootProject.name = "AnimeInfo"
 include(":app")
