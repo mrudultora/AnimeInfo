@@ -7,6 +7,7 @@ import androidx.navigation.toRoute
 import com.mrudultora.animeinfo.navigation.AnimeDetailNavigationAction
 import com.mrudultora.animeinfo.navigation.AnimeDetailRoute
 import com.mrudultora.animeinfo.usecases.GetAnimeDetailsWithCharactersUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,6 +22,7 @@ interface AnimeDetailViewModel {
     fun onUpClick()
 }
 
+@HiltViewModel
 class AnimeDetailViewModelImpl @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val getAnimeDetailsWithCharactersUseCase: GetAnimeDetailsWithCharactersUseCase,

@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.mrudultora.animeinfo.navigation.AnimeDetailNavigationAction
 import com.mrudultora.animeinfo.navigation.HomeNavigationAction
 import com.mrudultora.animeinfo.usecases.GetTopAnimeUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
@@ -16,6 +17,7 @@ interface HomeViewModel {
     fun onButtonClick()
 }
 
+@HiltViewModel
 class HomeViewModelImpl @Inject constructor(
     private val getTopAnimeUseCase: GetTopAnimeUseCase,
 ) : HomeViewModel, ViewModel() {
