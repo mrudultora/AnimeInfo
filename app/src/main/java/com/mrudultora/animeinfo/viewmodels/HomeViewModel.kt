@@ -22,8 +22,7 @@ class HomeViewModelImpl @Inject constructor(
     private val getTopAnimeUseCase: GetTopAnimeUseCase,
 ) : HomeViewModel, ViewModel() {
 
-    override val navigationAction: MutableSharedFlow<HomeNavigationAction>
-        get() = MutableSharedFlow()
+    override val navigationAction: MutableSharedFlow<HomeNavigationAction> = MutableSharedFlow()
 
     init {
         // do something

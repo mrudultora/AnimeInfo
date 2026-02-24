@@ -29,8 +29,7 @@ class AnimeDetailViewModelImpl @Inject constructor(
 ) : AnimeDetailViewModel, ViewModel() {
     private val animeDetailRoute: AnimeDetailRoute = savedStateHandle.toRoute()
 
-    override val state: MutableStateFlow<AnimeDetailState>
-        get() = MutableStateFlow(AnimeDetailState())
+    override val state: MutableStateFlow<AnimeDetailState> = MutableStateFlow(AnimeDetailState())
 
     override val navigationAction: MutableSharedFlow<AnimeDetailNavigationAction>
         get() = MutableSharedFlow()
