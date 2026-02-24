@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">AnimeInfo</string>
+    <string name="error_generic">Error</string>
+    <string name="episodes_label">Episodes: %1$s</string>
+    <string name="score_label">Score: %1$s</string>
+    <string name="not_available">N/A</string>
+    <string name="failed_to_load_more">Failed to load more</string>
+    <string name="retry">Retry</string>
+    <string name="something_went_wrong">Something went wrong</string>
 </resources>
