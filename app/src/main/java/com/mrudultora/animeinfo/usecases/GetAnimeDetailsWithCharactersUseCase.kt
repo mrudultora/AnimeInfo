@@ -24,6 +24,7 @@ class GetAnimeDetailsWithCharactersUseCase @Inject constructor(
                 val details = detailsDeferred.await()
                 val characters = charactersDeferred.await()
 
+                println("Embed url is : ${details.animeDetail.trailer?.embedUrl}")
                 Result.Success(
                     AnimeInfo(
                         animeDetails = details,
@@ -32,7 +33,7 @@ class GetAnimeDetailsWithCharactersUseCase @Inject constructor(
                 )
             }
         } catch (e: Exception) {
-            Result.Error(e.message ?: "Something went wrong")
+            Result.Error("Something went wrong")
         }
     }
 }

@@ -81,10 +81,6 @@ dependencies {
     implementation(libs.retrofit.gson)
     implementation(libs.okhttp.logging)
 
-    // MEDIA3 (ExoPlayer)
-    implementation(libs.media3.exoplayer)
-    implementation(libs.media3.ui)
-
     // COIL
     implementation(libs.coil)
 

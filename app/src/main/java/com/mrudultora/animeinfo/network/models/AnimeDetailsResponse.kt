@@ -3,6 +3,7 @@ package com.mrudultora.animeinfo.network.models
 import com.google.gson.annotations.SerializedName
 
 data class AnimeDetailsResponse(
+    @SerializedName("data")
     val animeDetail: AnimeDetail,
 )
 
@@ -28,7 +29,9 @@ data class AnimeDetail(
 
     data class Trailer(
         @SerializedName("embed_url")
-        val embedUrl: String?
+        val embedUrl: String?,
+        @SerializedName("youtube_id")
+        val youtubeId: String?
     )
 
     data class Genre(

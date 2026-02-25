@@ -24,7 +24,7 @@ fun NavGraphBuilder.homeNavigation(navHostController: NavHostController) {
                 homeViewModel.navigationAction.collect { action ->
                     when (action) {
                         is HomeNavigationAction.NavigateToAnimeDetail -> {
-                            navigator.navigateToAnimeDetail(animeId = action.animeId)
+                            navigator.navigateToAnimeDetail(animeId = action.animeId, animeTitle = action.animeTitle)
                         }
                     }
                 }
@@ -35,11 +35,11 @@ fun NavGraphBuilder.homeNavigation(navHostController: NavHostController) {
 }
 
 sealed interface HomeNavigationAction {
-    data class NavigateToAnimeDetail(val animeId: Int) : HomeNavigationAction
+    data class NavigateToAnimeDetail(val animeId: Int, val animeTitle: String) : HomeNavigationAction
 }
 
 class HomeNavigator(private val navController: NavController) {
-    fun navigateToAnimeDetail(animeId: Int) {
-        navController.navigate(AnimeDetailRoute(animeId = animeId))
+    fun navigateToAnimeDetail(animeId: Int, animeTitle: String) {
+        navController.navigate(AnimeDetailRoute(animeId = animeId, animeTitle = animeTitle))
     }
 }

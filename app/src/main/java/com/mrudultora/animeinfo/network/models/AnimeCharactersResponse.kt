@@ -3,6 +3,7 @@ package com.mrudultora.animeinfo.network.models
 import com.google.gson.annotations.SerializedName
 
 data class AnimeCharactersResponse(
+    @SerializedName("data")
     val data: List<CharacterData>
 )
 

@@ -7,4 +7,8 @@
     <string name="failed_to_load_more">Failed to load more</string>
     <string name="retry">Retry</string>
     <string name="something_went_wrong">Something went wrong</string>
+    <string name="genres_label">Genres</string>
+    <string name="synopsis_label">Synopsis</string>
+    <string name="synopsis_not_available">No synopsis available</string>
+    <string name="main_cast_label">Main Cast</string>
 </resources>

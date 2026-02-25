@@ -23,7 +23,7 @@ interface HomeViewModel {
     val state: StateFlow<HomeState>
     val navigationAction: Flow<HomeNavigationAction>
 
-    fun onAnimeCardClick(animeId: Int)
+    fun onAnimeCardClick(animeId: Int, animeTitle: String)
 }
 
 @HiltViewModel
@@ -43,9 +43,11 @@ class HomeViewModelImpl @Inject constructor(
         }
     }
 
-    override fun onAnimeCardClick(animeId: Int) {
+    override fun onAnimeCardClick(animeId: Int, animeTitle: String) {
         viewModelScope.launch {
-            navigationAction.emit(HomeNavigationAction.NavigateToAnimeDetail(animeId = animeId))
+            navigationAction.emit(
+                HomeNavigationAction.NavigateToAnimeDetail(animeId = animeId, animeTitle = animeTitle)
+            )
         }
     }
 }

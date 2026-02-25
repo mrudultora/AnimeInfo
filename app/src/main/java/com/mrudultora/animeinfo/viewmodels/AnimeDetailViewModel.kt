@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import com.mrudultora.animeinfo.navigation.AnimeDetailNavigationAction
 import com.mrudultora.animeinfo.navigation.AnimeDetailRoute
+import com.mrudultora.animeinfo.network.models.AnimeInfo
 import com.mrudultora.animeinfo.usecases.GetAnimeDetailsWithCharactersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -15,6 +16,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.mrudultora.animeinfo.network.Result
 
 interface AnimeDetailViewModel {
     val state: StateFlow<AnimeDetailState>
@@ -31,12 +33,21 @@ class AnimeDetailViewModelImpl @Inject constructor(
 
     override val state: MutableStateFlow<AnimeDetailState> = MutableStateFlow(AnimeDetailState())
 
-    override val navigationAction: MutableSharedFlow<AnimeDetailNavigationAction>
-        get() = MutableSharedFlow()
+    override val navigationAction: MutableSharedFlow<AnimeDetailNavigationAction> = MutableSharedFlow()
 
     init {
         state.update {
-            it.copy(animeId = animeDetailRoute.animeId)
+            it.copy(
+                animeId = animeDetailRoute.animeId,
+                animeTitle = animeDetailRoute.animeTitle
+            )
+        }
+        viewModelScope.launch {
+            state.update {
+                it.copy(
+                    animeInfoLoadingState = getAnimeDetailsWithCharactersUseCase(animeDetailRoute.animeId)
+                )
+            }
         }
     }
 
@@ -49,4 +60,6 @@ class AnimeDetailViewModelImpl @Inject constructor(
 
 data class AnimeDetailState(
     val animeId: Int? = null,
+    val animeTitle: String = "",
+    val animeInfoLoadingState: Result<AnimeInfo> = Result.Loading,
 )

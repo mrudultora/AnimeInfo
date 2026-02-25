@@ -1,5 +1,6 @@
 package com.mrudultora.animeinfo.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -106,7 +107,7 @@ fun HomeScreen(viewModel: HomeViewModel) {
                 }
             }
 
-            when (val loadState = pagingItems.loadState.refresh) {
+            when (pagingItems.loadState.refresh) {
                 is LoadState.Loading -> {
                     CircularProgressIndicator(
                         modifier = Modifier.align(Alignment.Center)
@@ -146,13 +147,13 @@ fun AnimeGridItem(
     episodes: Int?,
     score: Double?,
     imageUrl: String,
-    onAnimeCardClick: (Int) -> Unit
+    onAnimeCardClick: (Int, String) -> Unit
 ) {
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onAnimeCardClick(id) },
+            .clickable { onAnimeCardClick(id, title) },
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(6.dp)
     ) {
